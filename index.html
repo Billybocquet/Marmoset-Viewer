@@ -1,44 +1,42 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Marmoset Viewer</title>
   <style>
     html, body {
       margin: 0;
       width: 100%;
       height: 100%;
-      background: #111111;
+      background: #111;
       overflow: hidden;
-      font-family: Arial, sans-serif;
     }
 
-    #viewer {
-      width: 100vw;
-      height: 100vh;
+    body {
+      position: relative;
     }
 
-    .fallback {
+    #fallback {
       position: fixed;
       inset: 0;
-      display: flex;
+      display: none;
       align-items: center;
       justify-content: center;
-      color: white;
-      background: #111111;
-      text-align: center;
       padding: 24px;
       box-sizing: border-box;
-      z-index: 10;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #111;
+      z-index: 20;
     }
   </style>
 </head>
 <body>
-  <div id="viewer"></div>
-
-  <div class="fallback" id="fallback" style="display:none;">
-    Impossible de charger le viewer. Vérifie que marmoset.js et Sword.mview sont bien au même niveau que index.html.
+  <div id="fallback">
+    Impossible de charger le viewer.<br>
+    Vérifie que <strong>marmoset.js</strong> et <strong>Sword.mview</strong> sont bien à la racine du dépôt.
   </div>
 
   <script src="./marmoset.js"></script>
@@ -52,9 +50,9 @@
           fullFrame: true
         });
       }
-    } catch (e) {
+    } catch (error) {
+      console.error(error);
       document.getElementById("fallback").style.display = "flex";
-      console.error(e);
     }
   </script>
 </body>
