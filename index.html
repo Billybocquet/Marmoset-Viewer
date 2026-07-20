@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Marmoset Viewer</title>
+  <style>
+    html, body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      background: #111111;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+    }
+
+    #viewer {
+      width: 100vw;
+      height: 100vh;
+    }
+
+    .fallback {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      background: #111111;
+      text-align: center;
+      padding: 24px;
+      box-sizing: border-box;
+      z-index: 10;
+    }
+  </style>
+</head>
+<body>
+  <div id="viewer"></div>
+
+  <div class="fallback" id="fallback" style="display:none;">
+    Impossible de charger le viewer. Vérifie que marmoset.js et Sword.mview sont bien au même niveau que index.html.
+  </div>
+
+  <script src="./marmoset.js"></script>
+  <script>
+    try {
+      if (typeof marmoset === "undefined") {
+        document.getElementById("fallback").style.display = "flex";
+      } else {
+        marmoset.embed("./Sword.mview", {
+          autoStart: true,
+          fullFrame: true
+        });
+      }
+    } catch (e) {
+      document.getElementById("fallback").style.display = "flex";
+      console.error(e);
+    }
+  </script>
+</body>
+</html>
