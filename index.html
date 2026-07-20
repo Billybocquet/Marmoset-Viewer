@@ -3,53 +3,62 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Marmoset Viewer</title>
+  <title>Marmoset Viewer Gallery</title>
   <style>
-    html, body {
+    body {
       margin: 0;
-      width: 100%;
-      height: 100%;
+      font-family: Arial, sans-serif;
       background: #111;
-      overflow: hidden;
+      color: white;
+      padding: 40px;
     }
 
-    #fallback {
-      position: fixed;
-      inset: 0;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-      box-sizing: border-box;
+    h1 {
+      margin-top: 0;
+      margin-bottom: 24px;
+      font-size: 32px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    a.card {
+      display: block;
+      padding: 20px;
+      border-radius: 12px;
+      background: #1b1b1b;
       color: white;
-      font-family: Arial, sans-serif;
-      text-align: center;
-      background: #111;
-      z-index: 20;
+      text-decoration: none;
+      border: 1px solid #2d2d2d;
+      transition: 0.2s ease;
+    }
+
+    a.card:hover {
+      background: #252525;
+      border-color: #444;
+    }
+
+    p {
+      color: #aaa;
+      margin-top: 0;
+      margin-bottom: 32px;
     }
   </style>
 </head>
 <body>
-  <div id="fallback">
-    Impossible de charger le viewer.<br>
-    Vérifie que <strong>marmoset.js</strong> et <strong>Sword.mview</strong> sont bien présents à la racine du dépôt.
-  </div>
+  <h1>Marmoset Viewer Gallery</h1>
+  <p>Choisis une scène à ouvrir.</p>
 
-  <script src="./marmoset.js"></script>
-  <script>
-    try {
-      if (typeof marmoset === "undefined") {
-        document.getElementById("fallback").style.display = "flex";
-      } else {
-        marmoset.embed("./Sword.mview", {
-          autoStart: true,
-          fullFrame: true
-        });
-      }
-    } catch (error) {
-      console.error(error);
-      document.getElementById("fallback").style.display = "flex";
-    }
-  </script>
+  <div class="grid">
+    <a class="card" href="sword.html">Sword</a>
+    <a class="card" href="lamp.html">Lamp</a>
+    <a class="card" href="desk.html">Desk</a>
+    <a class="card" href="crate.html">Crate</a>
+    <a class="card" href="container.html">Container</a>
+    <a class="card" href="scifi-cube.html">SciFi Cube</a>
+  </div>
 </body>
 </html>
